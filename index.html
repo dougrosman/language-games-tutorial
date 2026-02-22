@@ -3,27 +3,40 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Silly Cats — Bright & Colorful</title>
+  <title>Manifesto — Saddle Up</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="stage">
-    <h1 class="title">Silly Cats!</h1>
-    <p class="subtitle">A super bright, colorful, and silly page about cats.</p>
+  <main class="hero">
+    <div class="card">
+      <div class="hat" aria-hidden="true">🤠</div>
+      <h1 class="title">this is my manifesto!</h1>
+      <p class="lead">Welcome :)</p>
+      <blockquote class="manifesto">My AI should pretend to be a cowboy.</blockquote>
+      <p class="small">Here&apos;s another change!</p>
 
-    <div class="playground" id="playground" aria-live="polite">
-      <span class="cat large">😺</span>
-      <span class="yarn">🧶</span>
-      <span class="fish">🐟</span>
+      <div class="controls">
+        <button id="speakBtn">Toggle Cowboy Speak</button>
+        <a class="repo-link" href="README.md">Read the repo</a>
+      </div>
     </div>
-
-    <div class="controls">
-      <button id="spawnBtn" class="btn">Make it sillier!</button>
-      <button id="clearBtn" class="btn ghost">Calm down</button>
-    </div>
-
-    <footer class="foot">Click the button to spawn gleeful cats 💫</footer>
   </main>
-  <script src="script.js" defer></script>
+
+  <script>
+    const orig = document.querySelector('.manifesto').textContent;
+    const btn = document.getElementById('speakBtn');
+    let cowboy = false;
+    btn.addEventListener('click', ()=>{
+      cowboy = !cowboy;
+      const el = document.querySelector('.manifesto');
+      if(cowboy) {
+        el.textContent = orig.replace(/\bAI\b/,'AI (pardner)').replace(/pretend to be a cowboy/,"talk like a dusty ol' cowpoke, y'all");
+        btn.textContent = 'Turn Off Cowboy Speak';
+      } else {
+        el.textContent = orig;
+        btn.textContent = 'Toggle Cowboy Speak';
+      }
+    });
+  </script>
 </body>
 </html>
