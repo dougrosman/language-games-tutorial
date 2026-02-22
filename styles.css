@@ -1,0 +1,69 @@
+:root{
+  --bg1:#ff8af9; --bg2:#ffd36b; --bg3:#66ffcc; --bg4:#6b9eff;
+  --accent1:#ff4d6d; --accent2:#ffd93d; --accent3:#5efc82;
+  --glass: rgba(255,255,255,0.15);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+  background-size: 400% 400%;
+  animation: bgShift 12s ease infinite;
+  color:#122;
+  display:flex;align-items:center;justify-content:center;
+}
+@keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.stage{width:min(960px,95%);padding:3rem;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));box-shadow:0 10px 40px rgba(0,0,0,0.12);backdrop-filter: blur(6px);}
+.title{font-size:4rem;margin:0 0 .2rem;letter-spacing:1px;line-height:1;color:#fff;text-align:center;
+  background:linear-gradient(90deg,#fff5,#ffd36b,#66ffcc,#6b9eff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;text-shadow: 0 6px 20px rgba(0,0,0,0.14);
+}
+.subtitle{text-align:center;margin:0 0 1.5rem;font-weight:600;color:#fff8;}
+.playground{min-height:260px;border-radius:12px;padding:1rem;display:flex;gap:1rem;align-items:center;justify-content:center;flex-wrap:wrap;position:relative;overflow:hidden}
+.cat{font-size:3rem;display:inline-block;transform-origin:center;}
+.large{font-size:6rem}
+.yarn{font-size:3.4rem;animation:spin 6s linear infinite}
+.fish{font-size:2.6rem;animation:sway 4s ease-in-out infinite}
+@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+@keyframes sway{0%{transform:translateY(0)}50%{transform:translateY(-18px)}100%{transform:translateY(0)}}
+.cat{animation:boing 2s cubic-bezier(.36,.07,.19,.97) infinite;}
+@keyframes boing{0%{transform:translateY(0)}30%{transform:translateY(-18px) scale(1.06)}50%{transform:translateY(0)}100%{transform:translateY(0)}}
+.controls{display:flex;gap:.75rem;justify-content:center;margin-top:1rem}
+.btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;padding:.65rem 1rem;border-radius:12px;color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.18);transform:translateZ(0);}
+.btn:active{transform:translateY(2px) scale(.995)}
+.btn.ghost{background:transparent;border:2px solid rgba(255,255,255,0.18);color:#fff}
+.foot{text-align:center;margin-top:1rem;color:#fff9}
+.spawned{position:absolute;left:50%;top:50%;pointer-events:auto;transform-origin:center;}
+.spawned.pop{animation:pop 700ms ease forwards}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-40%) scale(.6) rotate(-10deg)}60%{opacity:1;transform:translate(-50%,-60%) scale(1.12) rotate(6deg)}100%{opacity:1;transform:translate(-50%,-220%) scale(.9) rotate(18deg)}}
+/* little confetti pieces */
+.confetti{width:8px;height:8px;border-radius:2px;position:absolute;animation:fall linear forwards}
+@keyframes fall{0%{opacity:1;transform:translateY(-10vh) rotate(0)}100%{opacity:0;transform:translateY(110vh) rotate(720deg)}}
+
+/* additional playful animations */
+.spawned{will-change:transform,opacity}
+@keyframes float{0%{transform:translate(-50%,-10px) rotate(-2deg)}50%{transform:translate(-50%,-24px) rotate(4deg)}100%{transform:translate(-50%,-10px) rotate(-2deg)}}
+@keyframes wiggle{0%{transform:translate(-50%,-20%) rotate(-6deg)}25%{transform:translate(-50%,-22%) rotate(6deg)}50%{transform:translate(-50%,-20%) rotate(-2deg)}75%{transform:translate(-50%,-24%) rotate(8deg)}100%{transform:translate(-50%,-20%) rotate(0deg)}}
+@keyframes blink{0%{transform:scaleY(1)}45%{transform:scaleY(1)}50%{transform:scaleY(0.08)}55%{transform:scaleY(1)}100%{transform:scaleY(1)}}
+
+.spawned.wiggle{animation:pop 700ms ease forwards, float 4s ease-in-out .1s infinite, wiggle 3.6s ease-in-out .2s infinite}
+.spawned.blink{animation:pop 700ms ease forwards, blink 6s ease-in-out 1s infinite}
+
+/* balloons */
+.balloon{position:absolute;width:44px;height:60px;border-radius:28px;background:var(--accent1);display:flex;align-items:center;justify-content:center;color:white;font-size:20px;box-shadow:0 8px 18px rgba(0,0,0,0.15)}
+@keyframes rise{0%{transform:translateY(0) scale(0.9)}60%{transform:translateY(-40vh) scale(1.05)}100%{transform:translateY(-110vh) scale(1)}}
+.balloon::after{content:'';position:absolute;left:50%;bottom:-18px;width:2px;height:18px;background:rgba(255,255,255,0.25);transform:translateX(-50%)}
+.balloon.sway{animation:rise 6s linear forwards}
+
+/* tiny sparkles */
+.sparkle{position:absolute;width:6px;height:6px;border-radius:2px;background:gold;opacity:.95;box-shadow:0 0 10px rgba(255,255,255,0.6);animation:twinkle 1.6s ease-in-out forwards}
+@keyframes twinkle{0%{opacity:0;transform:scale(.2) translateY(0)}50%{opacity:1;transform:scale(1.05) translateY(-8px)}100%{opacity:0;transform:scale(.2) translateY(-20px)}}
+
+/* title rainbow pulse */
+.title{animation:titlePulse 3.2s ease-in-out infinite}
+@keyframes titlePulse{0%{filter:drop-shadow(0 8px 18px rgba(0,0,0,0.12))}50%{filter:drop-shadow(0 18px 36px rgba(0,0,0,0.2))}100%{filter:drop-shadow(0 8px 18px rgba(0,0,0,0.12))}}
+/* friendly accessibility focus */
+.btn:focus{outline:3px solid rgba(255,255,255,0.35);outline-offset:4px;border-radius:10px}
+@media (max-width:520px){.title{font-size:2.4rem}.large{font-size:4rem}}
